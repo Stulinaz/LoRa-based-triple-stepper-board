@@ -68,7 +68,7 @@ Programmer [STLINK](https://www.st.com/en/development-tools/st-link-v2.html).
 
 ## License
 
-BSD-3-Clause
+shown in the LICENSE.md file
 
 
 ## Developers
