@@ -5,15 +5,15 @@ Designed to remote control up to three axis mechatronic system.
 Build with [MIPOT](https://www.mipot.com) 32001506x LoRa module based on 
 [STM32WL55](https://www.st.com/en/microcontrollers-microprocessors/stm32wl55cc.html) dual core microcontroller.
 
-![img0](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/main/img/tmc2130_mip_HWREV1_ISO.png)
+![img0](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_ISO.png)
 
 Top Side of the board:
 
-![img1](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/main/img/tmc2130_mip_HWREV1_TOP.png)
+![img1](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_TOP.png)
 
 Bottom Side of The board:
 
-![img2](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/main/img/tmc2130_mip_HWREV1_BOT.png)
+![img2](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_BOT.png)
 
 
 ## Electrical characteristics
@@ -44,13 +44,13 @@ Bottom Side of The board:
 
 ## Bll of materials
 
-Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/main/production/ibom.html).
+Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/production/ibom.html).
 
 
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
-![img3](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/main/img/fw_freertos.png).
+![img3](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
 
 
 ## Software needed for development
