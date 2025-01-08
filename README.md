@@ -15,6 +15,13 @@ Bottom Side of The board:
 
 ![img2](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_BOT.png)
 
+board with 4 layers for EMI Compliance:
+
+![img3](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/SCH_REV1_LAYERS.png)
+
+Build with Kicad:
+
+![img4](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/SCH_REV1_FULL.png)
 
 ## Electrical characteristics
 
@@ -50,7 +57,7 @@ Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/bl
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
-![img3](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
+![img5](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
 
 
 ## Software needed for development
