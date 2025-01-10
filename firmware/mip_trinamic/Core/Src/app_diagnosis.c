@@ -65,7 +65,7 @@ static void AppDiagnosis(void *pvParameters)
     	}
     	(void)vTaskDelay(xDelayDiagnosis);
     }
-    vTaskDelete(NULL);
+    (void)vTaskDelete(NULL);
 }
 
 static void TrinamicReadDrvStatus(TMC2130_t *driver)

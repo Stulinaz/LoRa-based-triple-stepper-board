@@ -38,53 +38,53 @@ volatile uint32_t mot2_steps_shadow = 0;
  ******************************************************************************/
 void TIM2_Init(void)
 {
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_SlaveConfigTypeDef sSlaveConfig       = {0};
-  TIM_MasterConfigTypeDef sMasterConfig     = {0};
-  TIM_OC_InitTypeDef sConfigOC              = {0};
+	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+	TIM_SlaveConfigTypeDef sSlaveConfig       = {0};
+	TIM_MasterConfigTypeDef sMasterConfig     = {0};
+	TIM_OC_InitTypeDef sConfigOC              = {0};
 
-  /* Enable clock @ TIM2 */
-  RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
-  __NOP();
-  __NOP();
+	/* Enable clock @ TIM2 */
+	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
+	__NOP();
+	__NOP();
 
-  /* TIM2 CONFIGURATION */
-  htim2.Instance               = TIM2;
-  htim2.Init.Prescaler         = 0;
-  htim2.Init.CounterMode       = TIM_COUNTERMODE_UP;
-  htim2.Init.Period            = TIM2_PERIOD;
-  htim2.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  (void)HAL_TIM_Base_Init(&htim2);
+	/* TIM2 CONFIGURATION */
+	htim2.Instance               = TIM2;
+	htim2.Init.Prescaler         = 0;
+	htim2.Init.CounterMode       = TIM_COUNTERMODE_UP;
+	htim2.Init.Period            = TIM2_PERIOD;
+	htim2.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	(void)HAL_TIM_Base_Init(&htim2);
 
-  /* TIM2 clocked @ 48 MHz */
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  (void)HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig);
-  (void)HAL_TIM_PWM_Init(&htim2);
+	/* TIM2 clocked @ 48 MHz */
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	(void)HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig);
+	(void)HAL_TIM_PWM_Init(&htim2);
 
-  sSlaveConfig.SlaveMode    = TIM_SLAVEMODE_RESET;
-  sSlaveConfig.InputTrigger = TIM_TS_ITR0;
-  (void)HAL_TIM_SlaveConfigSynchro(&htim2, &sSlaveConfig);
+	sSlaveConfig.SlaveMode    = TIM_SLAVEMODE_RESET;
+	sSlaveConfig.InputTrigger = TIM_TS_ITR0;
+	(void)HAL_TIM_SlaveConfigSynchro(&htim2, &sSlaveConfig);
 
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode     = TIM_MASTERSLAVEMODE_DISABLE;
-  (void)HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode     = TIM_MASTERSLAVEMODE_DISABLE;
+	(void)HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
 
-  sConfigOC.OCMode     = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse      = TIM2_PERIOD-1000;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  (void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1);
-  (void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3);
-  (void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4);
+	sConfigOC.OCMode     = TIM_OCMODE_PWM1;
+	sConfigOC.Pulse      = TIM2_PERIOD-1000;
+	sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
+	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	(void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1);
+	(void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3);
+	(void)HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4);
 
-  (void)TIM2_GPIO_Init();
-  (void)HAL_NVIC_EnableIRQ(TIM2_IRQn);
-  (void)HAL_TIM_Base_Start_IT(&htim2);
-  (void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_1); /* Routed to DRV2_STEP GPIO */
-  (void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_3); /* Routed to DRV0_STEP GPIO */
-  (void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_4); /* Routed to DRV1_STEP GPIO */
-  __HAL_TIM_ENABLE(&htim2);
+	(void)TIM2_GPIO_Init();
+	(void)HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	(void)HAL_TIM_Base_Start_IT(&htim2);
+	(void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_1); /* Routed to DRV2_STEP GPIO */
+	(void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_3); /* Routed to DRV0_STEP GPIO */
+	(void)HAL_TIM_OC_Stop(&htim2, TIM_CHANNEL_4); /* Routed to DRV1_STEP GPIO */
+	__HAL_TIM_ENABLE(&htim2);
 }
 
 void TIM2_IRQHandler(void)
@@ -99,7 +99,6 @@ void TIM2_IRQHandler(void)
 	HandleMot2StepPulseGeneration();
 	tim2_cnt++;
 	__HAL_TIM_CLEAR_IT(&htim2 ,TIM_IT_UPDATE);
-
 }
 
 static inline void HandleMot0StepPulseGeneration(void)

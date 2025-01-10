@@ -88,34 +88,34 @@ extern TIM_HandleTypeDef htim2;
  ******************************************************************************/
 void vTaskCli(void)
 {
-	xTaskCreate(AppCli,"AppCli",250, NULL, CLI_TASK_PRIORITY, &cli_task_handle);
+	(void)xTaskCreate(AppCli,"AppCli",250, NULL, CLI_TASK_PRIORITY, &cli_task_handle);
 }
 
 static void AppCli(void *pvParameters)
 {
     uint8_t cInputIndex = 0;
     uint32_t receivedValue;
-    vRegisterCLICommands();
+    (void)vRegisterCLICommands();
     for (;;)
     {
         xTaskNotifyWait(pdFALSE, 0, &receivedValue, portMAX_DELAY);
         cRxedChar = receivedValue & 0xFF;
-        cliWrite((char *)&cRxedChar);
+        (void)cliWrite((char *)&cRxedChar);
         if (cRxedChar == '\r' || cRxedChar == '\n')
         {
-            handleNewline(pcInputString, cOutputBuffer, &cInputIndex);
+        	(void)handleNewline(pcInputString, cOutputBuffer, &cInputIndex);
         }
         else
         {
-            handleCharacterInput(&cInputIndex, pcInputString);
+        	(void)handleCharacterInput(&cInputIndex, pcInputString);
         }
     }
-    vTaskDelete(NULL);
+    (void)vTaskDelete(NULL);
 }
 
 static void cliWrite(const char *str)
 {
-	LPUART_TxPolling(str);
+	(void)LPUART_TxPolling(str);
 }
 
 static void handleCharacterInput(uint8_t *cInputIndex, char *pcInputString)
@@ -126,7 +126,7 @@ static void handleCharacterInput(uint8_t *cInputIndex, char *pcInputString)
     }
     else if (cRxedChar == (uint8_t)0x08 || cRxedChar == (uint8_t)0x7F)
     {
-        handleBackspace(cInputIndex, pcInputString);
+    	(void)handleBackspace(cInputIndex, pcInputString);
     }
     else
     {
@@ -140,14 +140,14 @@ static void handleCharacterInput(uint8_t *cInputIndex, char *pcInputString)
 
 static void handleNewline(const char *const pcInputString, char *cOutputBuffer, uint8_t *cInputIndex)
 {
-    cliWrite("\r\n");
+	(void)cliWrite("\r\n");
     BaseType_t xMoreDataToFollow;
     do
     {
         xMoreDataToFollow = FreeRTOS_CLIProcessCommand(pcInputString, cOutputBuffer, configCOMMAND_INT_MAX_OUTPUT_SIZE);
-        cliWrite(cOutputBuffer);
+        (void)cliWrite(cOutputBuffer);
     } while (xMoreDataToFollow != pdFALSE);
-    cliWrite(cli_prompt);
+    (void)cliWrite(cli_prompt);
     *cInputIndex = 0;
     memset((void*)pcInputString, 0x00, MAX_INPUT_LENGTH);
 }
@@ -161,14 +161,14 @@ static void handleBackspace(uint8_t *cInputIndex, char *pcInputString)
 #if USING_VS_CODE_TERMINAL
         cliWrite((char *)backspace);
 #elif USING_OTHER_TERMINAL
-        cliWrite((char *)backspace_tt);
+        (void)cliWrite((char *)backspace_tt);
 #endif
     }
     else
     {
 #if USING_OTHER_TERMINAL
         uint8_t right[] = "\x1b\x5b\x43";
-        cliWrite((char *)right);
+        (void)cliWrite((char *)right);
 #endif
     }
 }
@@ -177,7 +177,7 @@ static void vRegisterCLICommands(void)
 {
     for (int i = 0; xCommandList[i].pcCommand != NULL; i++)
     {
-        FreeRTOS_CLIRegisterCommand(&xCommandList[i]);
+    	(void)FreeRTOS_CLIRegisterCommand(&xCommandList[i]);
     }
 }
 

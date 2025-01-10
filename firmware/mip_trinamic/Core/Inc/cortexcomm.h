@@ -1,28 +1,18 @@
-#ifndef CORE_INC_SYS_TASK_H_
-#define CORE_INC_SYS_TASK_H_
+#ifndef CORE_INC_CORTEXCOMM_H_
+#define CORE_INC_CORTEXCOMM_H_
 
 /*******************************************************************************
  * Included files
  *****************************************************************************/
-#include "FreeRTOS.h"
-#include "task.h"
+#include "mip_common.h"
 
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-#define FW_VERSION               (0x01U)
-
-#define CLI_TASK_PRIORITY        (0x03U)
-#define DIAGNOSIS_TASK_PRIORITY  (0x02U)
-#define CORTEXCOMM_TASK_PRIORITY (0x02U)
-#define LORA_TASK_PRIORITY       (0x02U)
 
 /*******************************************************************************
  * API
  ******************************************************************************/
-extern TaskHandle_t cli_task_handle;
-extern TaskHandle_t stepper_diagnosis_task_handle;
-extern TaskHandle_t cortexcomm_task_handle;
-extern TaskHandle_t lora_task_handle;
+enum mip_error_t MipTransmitAndReceiveData(uint8_t *tx_buff, uint16_t tx_dim, uint8_t *rx_buff, uint16_t *rx_dim, uint32_t timeout_ms);
 
 #endif

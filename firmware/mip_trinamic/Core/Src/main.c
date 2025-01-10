@@ -14,6 +14,8 @@
 #include "app_diagnosis.h"
 #include "app_cli.h"
 #include "ipcc.h"
+#include "app_cortexcomm.h"
+#include "app_mipd.h"
 
 /*******************************************************************************
  * Definitions
@@ -70,6 +72,7 @@ int main(void)
 	/* Starting Tasks */
 	(void)vTaskStepperDiagnosis();
 	(void)vTaskCli();
+	(void)MipdTask();
 
 	/* Enable FreeRTOS */
 	(void)vTaskStartScheduler();

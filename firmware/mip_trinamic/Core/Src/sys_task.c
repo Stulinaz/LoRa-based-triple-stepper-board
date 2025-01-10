@@ -17,6 +17,7 @@
 TaskHandle_t cli_task_handle;
 TaskHandle_t stepper_diagnosis_task_handle;
 TaskHandle_t lora_task_handle;
+TaskHandle_t cortexcomm_task_handle;
 
 /*******************************************************************************
  * Code
