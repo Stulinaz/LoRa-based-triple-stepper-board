@@ -27,6 +27,10 @@ Main firwmare files for a quick view:
 
 ![img5](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/firmware_files.png)
 
+pcb and stencil order:
+
+![img6](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/pcbway_order.png)
+
 ## Electrical characteristics
 
 | Parameter                | Description | Min     | Typ     | Max     |  Unit            | Test Consitions |    
@@ -61,7 +65,7 @@ Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/bl
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
-![img6](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
+![img7](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
 
 
 ## Software needed for development

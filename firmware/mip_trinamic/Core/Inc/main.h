@@ -61,8 +61,7 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
-void SystemClock_Config(void);
+
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
