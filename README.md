@@ -31,15 +31,17 @@ Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/pro
 
 ![img6](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/pcbway_order.png)
 
+## Mode of Operation
+
+![img7](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/operation_mode.png)
+
 ## Electrical characteristics
 
-| Parameter                | Description | Min     | Typ     | Max     |  Unit            | Test Consitions |    
-| ---                      |    ---      | ---     | ---     | ---     | ---              | ---             |   
-|**Input Voltage**         | -           | 5 Vdc   | 12 Vdc  | 24 Vdc  | -                | -               |   
-|**Operating temperature** | -           | 0 \*C   | 25 \*C  | 55 \*C  | -                | -               |
-|**Power consumption**     | -           | -       | -       | -       | -                | -               |
-|**TODO**                  | -           | -       | -       | -       | -                | -               |
-
+| Parameter                | Description | Min        | Typ     | Max     |  Unit  | Test Consitions |    
+| ---                      |    ---      | ---        | ---     | ---     | ---    | ---             |   
+|**Input Voltage**         | -           | 6.25 Vdc   | 12 Vdc  | 45 Vdc  | -      | -               |   
+|**Operating temperature** | -           | 0 \*C      | 25 \*C  | 55 \*C  | -      | -               |
+|**Power consumption**     | -           | -          | -       | -       | -      | -               |
 
 ## Folder content and description
 
@@ -66,7 +68,7 @@ Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/bl
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
-![img7](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
+![img8](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
 
 
 ## Software needed for development
