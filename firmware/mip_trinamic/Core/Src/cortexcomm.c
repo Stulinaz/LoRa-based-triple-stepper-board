@@ -48,13 +48,17 @@ enum mip_error_t MipTransmitAndReceiveData(uint8_t *tx_buff, uint16_t tx_dim, ui
 				{
 					ipcc_handler = IPCC_TXRX_HANDLER_TX_DATA_TRANSMISSION;
 				}
+				else
+				{
+					ipcc_handler = IPCC_TXRX_HANDLER_ERROR;
+				}
 				break;
 			}
 
 			case IPCC_TXRX_HANDLER_TX_DATA_TRANSMISSION:
 			{
 				/* Copy message to IPCC common buffer */
-				memcpy ((uint8_t *)ipccCommBuff, tx_buff, tx_dim);
+				memcpy((uint8_t *)ipccCommBuff, tx_buff, tx_dim);
 				/* Notify remote cpu of the on-going transaction */
 				(void)HAL_IPCC_NotifyCPU(&hipcc, CH_ID_COMM, IPCC_CHANNEL_DIR_TX);
 				CM0_rx = 0;
@@ -65,7 +69,7 @@ enum mip_error_t MipTransmitAndReceiveData(uint8_t *tx_buff, uint16_t tx_dim, ui
 
 			case IPCC_TXRX_HANDLER_RX_DATA_WAIT:
 			{
-				if( GetTick() - time >= MIP_IPCC_TX_TIMEOUT)
+				if( GetTick() - time >= timeout_ms)
 				{
 					stat =  tx_timeout;
 					ipcc_handler = IPCC_TXRX_HANDLER_ERROR;

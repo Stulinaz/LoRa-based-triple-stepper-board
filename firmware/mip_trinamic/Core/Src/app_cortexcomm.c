@@ -57,7 +57,7 @@ static void CortexCommManager(void *pvParameters)
 			/* Copy message to IPCC common buffer */
 			memcpy ((uint8_t *)ipccCommBuff, CommRxBuf, len);
 			/* Notify remote cpu of the on-going transaction */
-			(void)HAL_IPCC_NotifyCPU (&hipcc, CH_ID_COMM, IPCC_CHANNEL_DIR_TX);
+			(void)HAL_IPCC_NotifyCPU(&hipcc, CH_ID_COMM, IPCC_CHANNEL_DIR_TX);
 			memset (CommRxBuf, 0, COMM_BUF_MAX_LEN);
 			len = 0;
 		}
@@ -68,7 +68,7 @@ static void CortexCommManager(void *pvParameters)
 			if ((ipccCommBuff[0] == CMD_HEADER_BYTE) && (ipccCommBuff[2] < IPCC_COMM_SIZE - 4))
 			{
 				SendMessageWithLen = ipccCommBuff[2] + 4;
-				memcpy (CommTxBuf, (uint8_t *)ipccCommBuff, SendMessageWithLen);
+				memcpy(CommTxBuf, (uint8_t *)ipccCommBuff, SendMessageWithLen);
 			}
 			if (CM0_rx == CM0_TX_COMM)
 			{
@@ -76,7 +76,7 @@ static void CortexCommManager(void *pvParameters)
 				(void)HAL_IPCC_NotifyCPU(&hipcc, CH_ID_COMM, IPCC_CHANNEL_DIR_RX);
 			}
 			CM0_rx = 0;
-			memset ((uint8_t *) ipccCommBuff, 0, IPCC_COMM_SIZE);
+			memset((uint8_t *) ipccCommBuff, 0, IPCC_COMM_SIZE);
 		}
 		(void)vTaskDelay(xDelay);
 	}

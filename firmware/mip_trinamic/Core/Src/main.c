@@ -70,7 +70,7 @@ int main(void)
 	}
 
 	/* Starting Tasks */
-	(void)vTaskStepperDiagnosis();
+	//(void)vTaskStepperDiagnosis();
 	(void)vTaskCli();
 	(void)MipdTask();
 

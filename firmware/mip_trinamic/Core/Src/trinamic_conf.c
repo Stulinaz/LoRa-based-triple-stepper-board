@@ -49,6 +49,7 @@ void TrinamicInit(void)
 	(void)Delay_ms(100);
 	(void)LPUART_TxPolling("\r\nBEGIN STEPPER INIT PROCEDURE\r\n");
 
+
 	/* Init MOT0 */
 	mot0_init = TMC2130_Init(&mot0);
 	if(true == mot0_init)
@@ -84,4 +85,5 @@ void TrinamicInit(void)
 		(void)LPUART_TxPolling("mot2 init FAILURE\r\n");
 		(void)TrinamicMotXDisable(TRINAMIC_MOT2_ID);
 	}
+
 }

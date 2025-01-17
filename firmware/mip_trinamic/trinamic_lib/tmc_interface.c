@@ -46,38 +46,52 @@ extern SPI_HandleTypeDef hspi2;
 
 __attribute__((weak)) TMC_spi_status_t tmc_spi_write (trinamic_motor_t driver, TMC_spi_datagram_t *datagram)
 {
-	uint8_t spi_tx_buff[5] = {0xEC, 0x00, 0xAB, 0xCD, 0xEF};
-	uint8_t spi_rx_buff[5];
-	/* Drive NSS Pin ON selected stepper driver */
-	TrinamicNSS_Select(driver.id);
-	/* Read data is transferred back to the master with the subsequent read or write access. */
-	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 10);
-	spi_tx_buff[0] = datagram->addr.value;
+	uint8_t spi_tx_buff[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+	uint8_t spi_rx_buff[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+
+	spi_tx_buff[0]  = datagram->addr.value;
+	spi_tx_buff[0] |= 0x80;
+
 	spi_tx_buff[1] = datagram->payload.data[0];
 	spi_tx_buff[2] = datagram->payload.data[1];
 	spi_tx_buff[3] = datagram->payload.data[2];
-	spi_tx_buff[3] = datagram->payload.data[3];
-	Delay_ms(2);
+	spi_tx_buff[4] = datagram->payload.data[3];
+	TrinamicNSS_Select(driver.id);
 	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 10);
 	TrinamicNSS_Idle();
+
+	Delay_ms(2);
+
+	TrinamicNSS_Select(driver.id);
+	spi_tx_buff[0] = 0x6F;
+	spi_tx_buff[1] = 0x00;
+	spi_tx_buff[2] = 0x00;
+	spi_tx_buff[3] = 0x00;
+	spi_tx_buff[4] = 0x00;
+	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 10);
+	TrinamicNSS_Idle();
+
     return 0;
 }
 
 __attribute__((weak)) TMC_spi_status_t tmc_spi_read (trinamic_motor_t driver, TMC_spi_datagram_t *datagram)
 {
-	uint8_t spi_tx_buff[5];
-	uint8_t spi_rx_buff[5];
+	uint8_t spi_tx_buff[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+	uint8_t spi_rx_buff[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 	spi_tx_buff[0] = datagram->addr.value;
 	spi_tx_buff[1] = datagram->payload.data[0];
 	spi_tx_buff[2] = datagram->payload.data[1];
 	spi_tx_buff[3] = datagram->payload.data[2];
-	spi_tx_buff[3] = datagram->payload.data[3];
-	/* Drive NSS Pin ON selected stepper driver */
+	spi_tx_buff[4] = datagram->payload.data[3];
+
 	TrinamicNSS_Select(driver.id);
-	/* Read data is transferred back to the master with the subsequent read or write access. */
-	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 10);
+	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 100);
+	TrinamicNSS_Idle();
+
 	Delay_ms(2);
-	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 10);
+
+	TrinamicNSS_Select(driver.id);
+	(void)HAL_SPI_TransmitReceive(&hspi2, spi_tx_buff, spi_rx_buff, 5, 100);
 	datagram->addr.value      = spi_rx_buff[0];
 	datagram->payload.data[0] = spi_rx_buff[1];
 	datagram->payload.data[1] = spi_rx_buff[2];
