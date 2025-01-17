@@ -41,13 +41,23 @@ Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/pro
 
 ![img7](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/operation_mode.png)
 
+## Closeup
+
+![img8](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/closeup001.png)
+
+![img9](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/closeup002.png)
+
+## SPI commonucation between microcontroller and TMC2130 Drivers
+
+![img10](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/spi.png)
+
 ## Electrical characteristics
 
-| Parameter                | Description | Min        | Typ     | Max     |  Unit  | Test Conditions |    
-| ---                      |    ---      | ---        | ---     | ---     | ---    | ---             |   
-|**Input Voltage**         | -           | 6.25 Vdc   | 12 Vdc  | 45 Vdc  | -      | -               |   
-|**Operating temperature** | -           | 0 \*C      | 25 \*C  | 55 \*C  | -      | -               |
-|**Power consumption**     | -           | -          | -       | -       | -      | -               |
+| Parameter                | Description | Min        | Typ     | Max     |  Unit  | Test Conditions         |    
+| ---                      |    ---      | ---        | ---     | ---     | ---    | ---                     |   
+|**Input Voltage**         | -           | 6          |         | 45      | V      | -                       |   
+|**Operating temperature** | -           | 0          | 25      | 55      | \*C    | -                       |
+|**Power consumption**     | -           | -          | 47      | -       | mA     | Vcc 6Vdc - Steppers Off |
 
 ## Folder content and description
 
@@ -72,7 +82,7 @@ Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/bl
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
-![img8](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
+![img11](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
 
 ## Software needed for development
 
@@ -93,3 +103,8 @@ Shown in the LICENSE.md file
 
 Hardware developer: [@ts-manuel](https://github.com/ts-manuel)
 Firmware developer: [@Stulinaz](https://github.com/Stulinaz)
+
+> [!CAUTION]
+> Manual soldering of SMD components requires high level of manual skills.
+> Project not suited for beginners in firmware development.
+> A good understanding of C language is a must.
