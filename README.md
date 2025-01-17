@@ -1,5 +1,11 @@
 <!-- For .md file development refers to https://docs.github.com/en -->
-# LoRa Wireless Triple Stepper Controller
+# LoRa Wireless Triple Stepper Controller 
+
+## Build for 7th PCBWAy Project Design Contest
+
+![img_cover](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/ProjectCover.png)
+
+[CLICK HERE](https://www.pcbway.com/project/shareproject/LoRa_based_triple_stepper_board_7cf3be2c.html) to see the project.
 
 Designed to remote control up to three axis mechatronic system.
 Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/products/mip-series/dual-core/32001506deu/) LoRa Open Core module based on 
@@ -7,27 +13,27 @@ Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/pro
 
 ![img0](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_ISO.png)
 
-## Top Side of the board:
+## Top Side of the board
 
 ![img1](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_TOP.png)
 
-## Bottom Side of The board:
+## Bottom Side of The board
 
 ![img2](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/tmc2130_mip_HWREV1_BOT.png)
 
-## Board with 4 layers for EMI Compliance:
+## Board with 4 layers for EMI Compliance
 
 ![img3](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/SCH_REV1_LAYERS.png)
 
-## Build with Kicad:
+## Build with Kicad
 
 ![img4](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/SCH_REV1_FULL.png)
 
-## Main firwmare files for a quick view:
+## Main firwmare files for a quick view
 
 ![img5](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/firmware_files.png)
 
-## Pcb and stencil order on pcbway:
+## Pcb and stencil order on pcbway
 
 ![img6](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/pcbway_order.png)
 
@@ -37,7 +43,7 @@ Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/pro
 
 ## Electrical characteristics
 
-| Parameter                | Description | Min        | Typ     | Max     |  Unit  | Test Consitions |    
+| Parameter                | Description | Min        | Typ     | Max     |  Unit  | Test Conditions |    
 | ---                      |    ---      | ---        | ---     | ---     | ---    | ---             |   
 |**Input Voltage**         | -           | 6.25 Vdc   | 12 Vdc  | 45 Vdc  | -      | -               |   
 |**Operating temperature** | -           | 0 \*C      | 25 \*C  | 55 \*C  | -      | -               |
@@ -59,17 +65,14 @@ Build with [MIPOT](https://www.mipot.com) [32001506DEU](https://mipot.com/en/pro
 - **production:** Production files. Gerbers, BOM and Stencil.
 - **doc:**  User manual of the board and Schematic. PDF format.
 
-
 ## Bll of materials
 
 Interactive [BOM](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/production/ibom.html).
-
 
 ## Firmware characteristics
 
 Based on [Freertos](https://www.freertos.org) with simple and clean development.
 ![img8](https://github.com/Stulinaz/LoRa-based-triple-stepper-board/blob/master/img/fw_freertos.png).
-
 
 ## Software needed for development
 
@@ -78,19 +81,15 @@ Based on [Freertos](https://www.freertos.org) with simple and clean development.
 - [GIT](https://git-scm.com/) **2.46.1.windows.1**
 - [Tera Term](https://teratermproject.github.io/index-en.html) **5.3 x86**
 
-
 ## Tools needed for development
 
 Programmer [STLINK](https://www.st.com/en/development-tools/st-link-v2.html).
-
 
 ## License
 
 Shown in the LICENSE.md file
 
-
 ## Developers
 
 Hardware developer: [@ts-manuel](https://github.com/ts-manuel)
-
 Firmware developer: [@Stulinaz](https://github.com/Stulinaz)
