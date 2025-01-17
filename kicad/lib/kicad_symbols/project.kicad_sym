@@ -849,10 +849,10 @@
 			)
 		)
 		(symbol "LMR51606XDBVR_1_1"
-			(pin power_in line
-				(at 0 -7.62 90)
+			(pin passive line
+				(at 10.16 2.54 180)
 				(length 2.54)
-				(name "GND"
+				(name "CB"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -867,10 +867,10 @@
 					)
 				)
 			)
-			(pin power_out line
-				(at 10.16 0 180)
+			(pin power_in line
+				(at 0 -7.62 90)
 				(length 2.54)
-				(name "SW"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -878,24 +878,6 @@
 					)
 				)
 				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at -10.16 2.54 0)
-				(length 2.54)
-				(name "VIN"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "3"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -913,7 +895,7 @@
 						)
 					)
 				)
-				(number "4"
+				(number "3"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -931,6 +913,24 @@
 						)
 					)
 				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -10.16 2.54 0)
+				(length 2.54)
+				(name "VIN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
 				(number "5"
 					(effects
 						(font
@@ -939,10 +939,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at 10.16 2.54 180)
+			(pin power_out line
+				(at 10.16 0 180)
 				(length 2.54)
-				(name "CB"
+				(name "SW"
 					(effects
 						(font
 							(size 1.27 1.27)

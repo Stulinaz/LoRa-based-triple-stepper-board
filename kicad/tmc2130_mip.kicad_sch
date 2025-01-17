@@ -6,8 +6,8 @@
 	(paper "A3")
 	(title_block
 		(title "tmc2130 MiP")
-		(date "2024-05-26")
-		(rev "00")
+		(date "2025-01-16")
+		(rev "01")
 	)
 	(lib_symbols)
 	(bus_alias "SPI"

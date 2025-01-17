@@ -971,7 +971,7 @@
 				)
 			)
 		)
-		(property "Value" ""
+		(property "Value" "Phoenix 1792265"
 			(at 0 0 0)
 			(effects
 				(font
@@ -1004,6 +1004,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Mouser" "651-1792265"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(symbol "Phoenix_MVSTBR_2,5_4-ST-5,08_0_1"
