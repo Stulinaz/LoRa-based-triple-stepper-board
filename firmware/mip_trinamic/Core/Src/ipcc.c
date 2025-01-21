@@ -90,6 +90,7 @@ void CM0_COMM_tx_callback(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIn
 
 void CM0_COMM_rx_callback(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
 {
+	/* CORTEX M4 send message to CORTEX M0 */
 	CM0_rx = CM0_TX_COMM;
 }
 

@@ -11,6 +11,7 @@
 #include "trinamic_tim.h"
 #include "trinamic_iic.h"
 #include "trinamic_conf.h"
+#include "trinamic_dac.h"
 #include "app_diagnosis.h"
 #include "app_cli.h"
 #include "ipcc.h"
@@ -53,6 +54,7 @@ int main(void)
 	(void)LPUART_Init();
 	(void)SPI2_Init();
 	(void)I2C1_Init();
+	(void)DAC_Init();
 
 	/* Set default state from potential system reset: Clear Stop2 flag of CPU1 */
 	__HAL_PWR_CLEAR_FLAG(PWR_FLAG_STOP2);

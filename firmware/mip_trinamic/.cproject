@@ -50,9 +50,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/freertos/portable/ARM_CM3}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Drivers/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Drivers/CMSIS/Device/ST/STM32WLxx/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Drivers/STM32WLxx_HAL_Driver/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Drivers/STM32WLxx_HAL_Driver/Inc/Legacy}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/wl_lib/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/trinamic_lib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/freertos_cli}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mip_trinamic/miplib}&quot;"/>

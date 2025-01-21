@@ -31,8 +31,8 @@ bool mot2_init = false;
 void TrinamicInit(void)
 {
 	mot0.config.motor.id = TRINAMIC_MOT0_ID; /* MOT0 */
-	mot0.config.motor.id = TRINAMIC_MOT1_ID; /* MOT1 */
-	mot0.config.motor.id = TRINAMIC_MOT2_ID; /* MOT2 */
+	mot1.config.motor.id = TRINAMIC_MOT1_ID; /* MOT1 */
+	mot2.config.motor.id = TRINAMIC_MOT2_ID; /* MOT2 */
 
 	/* Set default configuration for MOT0 */
 	(void)TMC2130_SetDefaults(&mot0);
