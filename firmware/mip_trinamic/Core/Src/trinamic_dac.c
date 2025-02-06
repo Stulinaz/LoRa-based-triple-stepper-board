@@ -39,6 +39,9 @@ void DAC_Init(void)
 	(void)HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1);
 	DAC_GPIO_Init();
 
+	/* Setup the AIN_IREF pins of drivers to 2.5 Vdc */
+	DAC->DHR8R1 = 0xC1;
+
 	/* DAC channel1 enabled */
 	DAC->CR |= DAC_CR_EN1;
 }
