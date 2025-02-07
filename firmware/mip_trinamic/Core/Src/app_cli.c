@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "trinamic_uart.h"
+#include "trinamic_dac.h"
 
 /*******************************************************************************
  * Definitions
@@ -31,6 +32,7 @@ static BaseType_t CliGetTrinamicMipFwVersion(char *pcWriteBuffer, size_t xWriteB
 static BaseType_t CliMot0SetSteps(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t CliMot1SetSteps(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t CliMot2SetSteps(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t CliSetTrinamic_AIN_IREF_Voltage(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 
 /*******************************************************************************
  * Variables
@@ -60,6 +62,12 @@ const CLI_Command_Definition_t xCommandList[] = {
 		.pxCommandInterpreter        = CliMot2SetSteps,
 		.cExpectedNumberOfParameters = 1
 	},
+	{
+		.pcCommand                   = "dac",
+		.pcHelpString                = "dac: Set the voltage @ all steppers AIN_IREF pins \r\n",
+		.pxCommandInterpreter        = CliSetTrinamic_AIN_IREF_Voltage,
+		.cExpectedNumberOfParameters = 1
+	},
     {
         .pcCommand = NULL
     }
@@ -83,6 +91,8 @@ extern uint32_t mot1_steps_shadow;
 extern uint32_t mot2_steps;
 extern uint32_t mot2_steps_shadow;
 extern TIM_HandleTypeDef htim2;
+extern uint8_t dac_output_voltage;
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -225,5 +235,26 @@ static BaseType_t CliMot2SetSteps(char *pcWriteBuffer, size_t xWriteBufferLen, c
 	steps             = strtol(pcParameter1, NULL, 10);
 	mot2_steps_shadow = steps;
 	strcpy(pcWriteBuffer, success);
+	return pdFALSE;
+}
+
+static BaseType_t CliSetTrinamic_AIN_IREF_Voltage(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString)
+{
+	(void)xWriteBufferLen;
+	const char *pcParameter1;
+	BaseType_t xParameter1StringLength;
+	uint32_t dac_val;
+	pcParameter1 = FreeRTOS_CLIGetParameter(pcCommandString, 1, &xParameter1StringLength);
+	dac_val      = strtol(pcParameter1, NULL, 10);
+	if ( (dac_val >= 0) && (dac_val <= 255) )
+	{
+		dac_output_voltage = (uint8_t) dac_val;
+		DACUpdate();
+		strcpy(pcWriteBuffer, success);
+	}
+	else
+	{
+		strcpy(pcWriteBuffer, wrong);
+	}
 	return pdFALSE;
 }

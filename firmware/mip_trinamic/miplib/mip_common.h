@@ -46,6 +46,12 @@
 /*! @name        Common Macro Definitions                */
 /******************************************************************************/
 
+#define MIPB_DEVICE_FW_VERSION     (0x10000000)
+#define MIPC_DEVICE_FW_VERSION     (0x20000000)
+#define MIPD_DEVICE_FW_VERSION     (0x00000000)
+#define MIPA_DEVICE_FW_VERSION     (0x30000000)
+#define MIPF_DEVICE_FW_VERSION     (0xA0000000)
+
 #define MIP_RET_SUCCESS            (0x00U)
 #define MIP_HEADER                 (0xAAU) /* A serial communication with MIP module, start always with a header */
 #define MIP_RESET_CMD              (0x30U) /* Module software reset command */
@@ -66,9 +72,10 @@
 
 #define MIP_DELAY_RESET             100U
 #define MIP_DELAY_FACTORY_RESET     300U
+#define MIP_EEPROM_WRITE_TIMEOUT    30U
 
 /*!
- * @brief mipot module avaliable uart baud rates
+ * @brief Mipot module avaliable uart baud rates
  */
 enum UartBaudrate_t {
 	UartBaudrate_9600   = 0x00U,
@@ -79,7 +86,7 @@ enum UartBaudrate_t {
 };
 
 /*!
- * @brief mipot module error codes
+ * @brief Mipot module error codes
  */
 enum mip_error_t {
 	no_error                 = 0x00U,

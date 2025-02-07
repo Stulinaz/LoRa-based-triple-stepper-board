@@ -84,13 +84,12 @@ void HAL_IPCC_MspDeInit(IPCC_HandleTypeDef* ipccHandle)
 
 void CM0_COMM_tx_callback(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
 {
-	/* CORTEX M0 respond to CORTEX M4 */
+	/* CORTEX M0(CPU2) respond to CORTEX M4 */
 	CM0_rx = CM0_RX_COMM;
 }
 
 void CM0_COMM_rx_callback(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
 {
-	/* CORTEX M4 send message to CORTEX M0 */
 	CM0_rx = CM0_TX_COMM;
 }
 

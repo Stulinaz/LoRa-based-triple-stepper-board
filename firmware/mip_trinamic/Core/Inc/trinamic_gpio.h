@@ -94,8 +94,8 @@
 #define GPIO0_NWAKE_Port		GPIOA
 
 /* BATTERY MEASUREMENT & DAC */
-#define AIN_REF_MIP_Pin			GPIO_PIN_10
-#define AIN_REF_MIP_Port  		GPIOA
+#define AIN_IREF_MIP_Pin		GPIO_PIN_10
+#define AIN_IREF_MIP_Port  		GPIOA
 
 #define VEXT_SENSE_Pin			GPIO_PIN_13
 #define VEXT_SENSE_Port  		GPIOB

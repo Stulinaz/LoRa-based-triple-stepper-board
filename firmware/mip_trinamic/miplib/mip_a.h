@@ -36,61 +36,36 @@
 *
 */
 
+#ifndef MIP_A_H_
+#define MIP_A_H_
+
 /*******************************************************************************
  * Included files
  *****************************************************************************/
-#include "mip_common.h"
+#include "mip_a_def.h"
 
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
 
 /*******************************************************************************
- * Prototypes
+ * API
  ******************************************************************************/
+enum mip_error_t mipa_null_ptr_check(const struct mip_a *const dev);
+enum mip_error_t mipa_reset(const struct mip_a *const dev);
+enum mip_error_t mipa_factory_reset(const struct mip_a *const dev);
+enum mip_error_t mipa_get_fw_version(struct mip_a *const dev);
+enum mip_error_t mipa_get_serial_no(struct mip_a *const dev);
+enum mip_error_t mipa_get_rssi(struct mip_a *const dev);
+enum mip_error_t mipa_set_mode(struct mip_a *const dev, enum a_wmbusmode_t wmbus_mode, enum a_mem_t memory_area);
+enum mip_error_t mipa_enable_ndata_indicate_pin(const struct mip_a *const dev);
+enum mip_error_t mipa_eeprom_write_radio_phy_param(const struct mip_a *const dev);
+enum mip_error_t mipa_eeprom_read_radio_phy_param(const struct mip_a *const dev, struct a_radio_phy_t *const config);
+enum mip_error_t mipa_eeprom_write_module_parameters(const struct mip_a *const dev);
+enum mip_error_t mipa_eeprom_read_module_parameters(const struct mip_a *const dev, struct a_module_param_t *const config);
+enum mip_error_t mipa_eeprom_write_wmbus_medium_access_parameters(const struct mip_a *const dev);
+enum mip_error_t mipa_eeprom_read_wmbus_medium_access_parameters(const struct mip_a *const dev, struct a_medium_access_param_t *const config);
+enum mip_error_t mipa_tx_msg_cmd(const uint8_t *msg, uint8_t msg_len, struct mip_a *const dev);
+enum mip_error_t mipa_rx_msg_IND(struct mip_a *const dev, uint32_t timeout);
 
-/*******************************************************************************
- * Variables
- ******************************************************************************/
-
-/*******************************************************************************
- * Code
- ******************************************************************************/
-
-/*!
- * @brief This function generates the checksum of the command that need to be sent to the Mipot module.
- * @param[in] *buff : The Tx buffer containing the command.
- * @param[in]   len : Lenght of the command.
- * @return Calcolated checksum.
- */
-uint8_t mip_generate_checksum(const uint8_t *buff, uint16_t len)
-{
-  uint8_t n, crc;
-  crc = 0;
-  for (n=0; n<len; n++)
-    crc += buff[n];
-  crc = (crc ^ 0xFF) + 1;
-  return crc;
-}
-
-/*!
- * @brief This function perform a check of the received command based on the crc.
- * @param[in] *buff : The Rx buffer containing the command.
- * @param[in]   len : Lenght of the command.
- * @retval   0 -> Success.
- * @retval > 0 -> Fail.
- */
-enum mip_error_t mip_validate_response(const uint8_t *buff, uint16_t len)
-{
-	enum mip_error_t ret = crc_invalid;
-	uint8_t crc;
-	if(len)
-	{
-		crc = mip_generate_checksum(buff, len-1);
-		if (crc == buff[len-1])
-		{
-			ret = no_error;
-		}
-	}
-	return ret;
-}
+#endif /* MIP_A_H_ */

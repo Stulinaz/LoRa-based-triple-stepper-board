@@ -17,6 +17,7 @@ static void DAC_GPIO_Init(void);
  * Variables
  ******************************************************************************/
 DAC_HandleTypeDef hdac;
+uint8_t dac_output_voltage = DAC_OUTPUT_VOLTAGE_DEF;
 
 /*******************************************************************************
  * Code
@@ -40,18 +41,23 @@ void DAC_Init(void)
 	DAC_GPIO_Init();
 
 	/* Setup the AIN_IREF pins of drivers to 2.5 Vdc */
-	DAC->DHR8R1 = 0xC1;
+	DACUpdate();
 
 	/* DAC channel1 enabled */
 	DAC->CR |= DAC_CR_EN1;
 }
 
+void DACUpdate(void)
+{
+	DAC->DHR8R1 = dac_output_voltage;
+}
+
 static void DAC_GPIO_Init(void)
 {
-	/* Configure GPIO pin : AIN_REF_MIP_Pin */
+	/* Configure GPIO pin : AIN_IREF_MIP_Pin */
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
-    GPIO_InitStruct.Pin  = AIN_REF_MIP_Pin;
+    GPIO_InitStruct.Pin  = AIN_IREF_MIP_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(AIN_REF_MIP_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(AIN_IREF_MIP_Port, &GPIO_InitStruct);
 }

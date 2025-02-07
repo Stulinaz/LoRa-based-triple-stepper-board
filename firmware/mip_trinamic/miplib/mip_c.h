@@ -36,61 +36,47 @@
 *
 */
 
+#ifndef INC_MIP_C_H_
+#define INC_MIP_C_H_
+
 /*******************************************************************************
  * Included files
  *****************************************************************************/
-#include "mip_common.h"
+#include "mip_c_def.h"
 
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
 
 /*******************************************************************************
- * Prototypes
+ * API
  ******************************************************************************/
+/* MASTER - NED NODE COMMON */
+enum mip_error_t mipc_null_ptr_check(const struct mip_c *const dev);
+enum mip_error_t mipc_reset(const struct mip_c *const dev);
+enum mip_error_t mipc_factory_reset(const struct mip_c *const dev);
+enum mip_error_t mipc_get_fw_version(struct mip_c *const dev);
+enum mip_error_t mipc_get_serial_no(struct mip_c *const dev);
+enum mip_error_t mipc_eeprom_write_stack_parameters(const struct mip_c *const dev);
+enum mip_error_t mipc_eeprom_read_stack_parameters(const struct mip_c *const dev, struct c_stack_param_t *const config);
+enum mip_error_t mipc_eeprom_write_radio_phy_param(const struct mip_c *const dev);
+enum mip_error_t mipc_eeprom_read_radio_phy_param(const struct mip_c *const dev, struct c_radio_phy_t *const config);
+enum mip_error_t mipc_eeprom_write_module_parameters(const struct mip_c *const dev);
+enum mip_error_t mipc_eeprom_read_module_parameters(const struct mip_c *const dev, struct c_module_param_t *const config);
+enum mip_error_t mipc_tx_msg_cmd(c_messageTrasmission_t tx_typ, uint32_t dest_id, const uint8_t *msg, uint8_t msg_len, struct mip_c *const dev);
+enum mip_error_t mipc_enable_ndata_indicate_pin(struct mip_c *const dev);
+enum mip_error_t mipc_set_sleep(const struct mip_c *const dev);
+enum mip_error_t mipc_wakeup(const struct mip_c *const dev);
+enum mip_error_t mipc_handle_IND_messages(struct mip_c *const dev, uint32_t timeout);
+/* MASTER SPECIFIC */
+enum mip_error_t mipc_enable_pairing(const struct mip_c *const dev);
+enum mip_error_t mipc_get_network_table_size(struct mip_c *const dev);
+enum mip_error_t mipc_get_network_row_size(uint8_t idx, struct mip_c *const dev);
+enum mip_error_t mipc_delete_en_device(uint8_t idx, struct mip_c *const dev);
+enum mip_error_t mipc_delete_all_en_device(struct mip_c *const dev);
+/* END NODE SPECIFIC */
+enum mip_error_t mipc_link_check_request(struct mip_c *const dev);
+enum mip_error_t mipc_get_activation_status(struct mip_c *const dev);
+enum mip_error_t mipc_pairing_req_cmd(struct mip_c *const dev);
 
-/*******************************************************************************
- * Variables
- ******************************************************************************/
-
-/*******************************************************************************
- * Code
- ******************************************************************************/
-
-/*!
- * @brief This function generates the checksum of the command that need to be sent to the Mipot module.
- * @param[in] *buff : The Tx buffer containing the command.
- * @param[in]   len : Lenght of the command.
- * @return Calcolated checksum.
- */
-uint8_t mip_generate_checksum(const uint8_t *buff, uint16_t len)
-{
-  uint8_t n, crc;
-  crc = 0;
-  for (n=0; n<len; n++)
-    crc += buff[n];
-  crc = (crc ^ 0xFF) + 1;
-  return crc;
-}
-
-/*!
- * @brief This function perform a check of the received command based on the crc.
- * @param[in] *buff : The Rx buffer containing the command.
- * @param[in]   len : Lenght of the command.
- * @retval   0 -> Success.
- * @retval > 0 -> Fail.
- */
-enum mip_error_t mip_validate_response(const uint8_t *buff, uint16_t len)
-{
-	enum mip_error_t ret = crc_invalid;
-	uint8_t crc;
-	if(len)
-	{
-		crc = mip_generate_checksum(buff, len-1);
-		if (crc == buff[len-1])
-		{
-			ret = no_error;
-		}
-	}
-	return ret;
-}
+#endif

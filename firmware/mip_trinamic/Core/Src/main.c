@@ -51,7 +51,7 @@ int main(void)
 	(void)TrinamicGPIO_Init();
 	(void)TIM2_Init();
 	(void)TIM16_Init();
-	(void)LPUART_Init();
+	//(void)LPUART_Init();
 	(void)SPI2_Init();
 	(void)I2C1_Init();
 	(void)DAC_Init();

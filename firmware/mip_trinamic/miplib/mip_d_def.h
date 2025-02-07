@@ -61,6 +61,9 @@
 #define MIPD_BANDWIDTH_ADDR             (0x02U)
 #define MIPD_SPREADING_FACTOR_ADDR      (0x03U)
 #define MIPD_CODE_RATE_ADDR             (0x04U)
+#define MIPD_DATA_INDICATE_TIMEOUT_ADDR (0x05U)
+#define MIPD_UART_BAUDRATE_ADDR         (0x06U)
+#define MIPD_APP_ENABLE_AES_ADDR        (0x07U)
 
 /*!
  * @brief mipd Stack Parameters default values
@@ -94,7 +97,7 @@
 #define MIPD_AppEnAes_DEF_VAL            (0x00U)
 
 /*!
- * @brief mipot module 3200150xD avaliable power levels
+ * @brief Mipot module 3200150xD avaliable power levels
  */
 enum d_power_t {
 	power_level_2dBm  = 0x02U,
@@ -113,7 +116,7 @@ enum d_power_t {
 };
 
 /*!
- * @brief mipot module 3200150xD avaliable tx-bandwidth
+ * @brief Mipot module 3200150xD avaliable tx-bandwidth
  */
 enum d_bandwidth_t {
 	TX_bandwidth_125_kHz = 0x00U,
@@ -122,7 +125,7 @@ enum d_bandwidth_t {
 };
 
 /*!
- * @brief mipot module 3200150xD avaliable spreading factor expressed in chips
+ * @brief Mipot module 3200150xD avaliable spreading factor expressed in chips
  */
 enum d_spreading_factor_t {
 	SF_64_chips   = 0x06U,
@@ -136,7 +139,7 @@ enum d_spreading_factor_t {
 
 
 /*!
- * @brief mipot module 3200150xD avaliable code rates
+ * @brief Mipot module 3200150xD avaliable code rates
  */
 enum d_code_rate_t {
 	code_rate__4_5  = 0x01U,
@@ -146,7 +149,7 @@ enum d_code_rate_t {
 };
 
 /*!
- * @brief mipot module 3200150xD Frequency index
+ * @brief Mipot module 3200150xD Frequency index
  */
 enum d_frequency_channel_t {
 	ch0__868_075_MHz  = 0x00U,
@@ -227,7 +230,7 @@ enum d_frequency_channel_t {
 };
 
 /*!
- * @brief mipot module 3200150xD Application AES Key Enable/Disable
+ * @brief Mipot module 3200150xD Application AES Key Enable/Disable
  */
 enum d_AppEnAes_t {
 	AppEnAes_Disabled = 0x00U,
@@ -235,7 +238,7 @@ enum d_AppEnAes_t {
 };
 
 /*!
- * @brief mipot module 3200150xD Radio Parameters
+ * @brief Mipot module 3200150xD Radio Parameters
  */
 struct d_radio_phy_t {
 	/* Power expressed in dBm */
@@ -255,7 +258,7 @@ struct d_radio_phy_t {
 };
 
 /*!
- * @brief mipot module 3200150xD module parameters
+ * @brief Mipot module 3200150xD module parameters
  */
 struct d_module_param_t {
 	/* Timeout in ms */
@@ -269,7 +272,7 @@ struct d_module_param_t {
 };
 
 /*!
- * @brief mipot module 3200150xD received data information
+ * @brief Mipot module 3200150xD received data information
  */
 struct d_rx_data_info_t{
     /* 16-bit Rssi Value expressed in dBm */
@@ -284,7 +287,7 @@ struct d_rx_data_info_t{
 };
 
 /*!
- * @brief mipot module 3200150xD transmitted data information
+ * @brief Mipot module 3200150xD transmitted data information
  */
 struct d_tx_data_info_t{
 	/* Time on Air, total time needed for the transmission, in ms. */
@@ -294,20 +297,20 @@ struct d_tx_data_info_t{
 
 struct mip_d
 {
-	bool is_present;
     uint32_t fw_version;
     uint32_t serialno;
     uint8_t AESKey[16];
     uint8_t InitVector[16];
-    struct d_radio_phy_t radio_py;
+    struct d_radio_phy_t radio_phy;
     struct d_module_param_t module_param;
+    struct d_rx_data_info_t rx_data_info;
+    struct d_tx_data_info_t tx_data_info;
+    /* porting function pointers */
     void (*hardware_init_fn) (enum UartBaudrate_t baudrate);
     enum mip_error_t (*send_and_receive_fn) (uint8_t *tx_buff, uint16_t tx_dim, uint8_t *rx_buff, uint16_t *rx_dim, uint32_t timeout_ms);
     enum mip_error_t (*receive_fn) (uint8_t *rx_buff, uint16_t *rx_dim, uint32_t timeout_ms);
     void (*hardware_reset_fn) (void);
     void (*delay_ms_fn) (uint32_t ms);
-    struct d_rx_data_info_t rx_data_info;
-    struct d_tx_data_info_t tx_data_info;
 };
 
 #endif
